@@ -1,11 +1,11 @@
 import java.util.List;
-import db.PropertyData;
-import service.PropertyService;
+import dataAccess.PropertyRepositoryImpl;
+import service.PropertyServiceImpl;
 
 public class App {
     public static void main(String[] args) {
-        PropertyData propData = new PropertyData();
-        PropertyService propService = new PropertyService(propData.getHouseList(), propData.getCottageList(), propData.getVillaList());
+        PropertyRepositoryImpl propData = new PropertyRepositoryImpl();
+        PropertyServiceImpl propService = new PropertyServiceImpl(propData.getHouseList(), propData.getCottageList(), propData.getVillaList());
 
         System.out.println("Toplam Ev Fiyatı: " + propService.getTotalHousePrice());
         System.out.println("Toplam Villa Fiyatı: " + propService.getTotalVillaPrice());

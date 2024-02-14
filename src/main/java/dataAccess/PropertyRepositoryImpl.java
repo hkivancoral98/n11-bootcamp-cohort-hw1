@@ -1,16 +1,16 @@
-package db;
+package dataAccess;
 
 import entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PropertyData {
+public class PropertyRepositoryImpl implements PropertyRepository {
 
     private final List<House> houses = new ArrayList<>();
     private final List<Villa> villas = new ArrayList<>();
     private final List<Cottage> cottages = new ArrayList<>();
 
-    public PropertyData() {
+    public PropertyRepositoryImpl() {
 
         House house1 = new House(200000, 3, 1, 120);
         House house2 = new House(250000, 4, 2, 150);
@@ -37,14 +37,17 @@ public class PropertyData {
         cottages.add(cottage3);
     }
 
+    @Override
     public List<House> getHouseList(){
         return houses;
     }
 
+    @Override
     public List<Villa> getVillaList(){
         return villas;
     }
 
+    @Override
     public List<Cottage> getCottageList(){
         return cottages;
     }

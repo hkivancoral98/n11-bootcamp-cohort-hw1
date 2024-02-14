@@ -1,83 +1,29 @@
 package service;
 
-import entity.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class PropertyService {
+public interface PropertyService {
+    int getTotalHousePrice();
 
-    private final List<House> houses;
-    private final List<Cottage> cottages;
-    private final List<Villa> villas;
+    int getTotalVillaPrice();
 
-    public PropertyService(List<House> houses, List<Cottage> cottages, List<Villa> villas) {
-        this.houses = houses;
-        this.cottages = cottages;
-        this.villas = villas;
-    }
+    int getTotalCottagePrice();
 
-    public int getTotalHousePrice() {
-        return houses.stream().mapToInt(House::getPrice).sum();
-    }
+    int getTotalPropertyPrice();
 
-    public int getTotalVillaPrice() {
-        return villas.stream().mapToInt(Villa::getPrice).sum();
-    }
+    double getAverageHouseSize();
 
-    public int getTotalCottagePrice() {
-        return cottages.stream().mapToInt(Cottage::getPrice).sum();
-    }
+    double getAverageVillaSize();
 
-    public int getTotalPropertyPrice() {
-        return getTotalHousePrice() + getTotalVillaPrice() + getTotalCottagePrice();
-    }
+    double getAverageCottageSize();
 
-    public double getAverageHouseSize() {
-        return houses.stream().mapToDouble(House::getSize).average().orElse(0);
-    }
+    double getTotalHouseSize();
 
-    public double getAverageVillaSize() {
-        return villas.stream().mapToDouble(Villa::getSize).average().orElse(0);
-    }
+    double getTotalVillaSize();
 
-    public double getAverageCottageSize() {
-        return cottages.stream().mapToDouble(Cottage::getSize).average().orElse(0);
-    }
+    double getTotalCottageSize();
 
-    public double getTotalHouseSize() {
-        return houses.stream().mapToDouble(House::getSize).sum();
-    }
+    double getAveragePropertySize();
 
-    public double getTotalVillaSize() {
-        return villas.stream().mapToDouble(Villa::getSize).sum();
-    }
-
-    public double getTotalCottageSize() {
-        return cottages.stream().mapToDouble(Cottage::getSize).sum();
-    }
-
-    public double getAveragePropertySize() {
-        return (getTotalHouseSize() + getTotalVillaSize() + getTotalCottageSize())
-                / (houses.size() + villas.size() + cottages.size());
-    }
-
-    public List<Object> filterByRoomAndSaloon(int roomCount, int saloonCount) {
-        List<Object> filteredProperties = new ArrayList<>();
-
-        filteredProperties.addAll(houses.stream()
-                .filter(house -> house.getNumOfRoom() == roomCount && house.getNumOfSaloon() == saloonCount)
-                .toList());
-
-        filteredProperties.addAll(villas.stream()
-                .filter(villa -> villa.getNumOfRoom() == roomCount && villa.getNumOfSaloon() == saloonCount)
-                .toList());
-
-        filteredProperties.addAll(cottages.stream()
-                .filter(cottage -> cottage.getNumOfRoom() == roomCount && cottage.getNumOfSaloon() == saloonCount)
-                .toList());
-
-        return filteredProperties;
-    }
-
+    List<Object> filterByRoomAndSaloon(int roomCount, int saloonCount);
 }
