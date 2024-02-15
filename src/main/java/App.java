@@ -1,26 +1,29 @@
 import java.util.List;
+
+import dataAccess.PropertyRepository;
 import dataAccess.PropertyRepositoryImpl;
+import service.PropertyService;
 import service.PropertyServiceImpl;
 
 public class App {
     public static void main(String[] args) {
-        PropertyRepositoryImpl propData = new PropertyRepositoryImpl();
-        PropertyServiceImpl propService = new PropertyServiceImpl(propData.getHouseList(), propData.getCottageList(), propData.getVillaList());
+        PropertyRepository propertyRepository = new PropertyRepositoryImpl();
+        PropertyService propertyService = new PropertyServiceImpl(propertyRepository);
 
-        System.out.println("Toplam Ev Fiyatı: " + propService.getTotalHousePrice());
-        System.out.println("Toplam Villa Fiyatı: " + propService.getTotalVillaPrice());
-        System.out.println("Toplam Yazlık Fiyatı: " + propService.getTotalCottagePrice());
-        System.out.println("Toplam Mülk Fiyatı: " + propService.getTotalPropertyPrice());
+        System.out.println("Toplam Ev Fiyatı: " + propertyService.getTotalHousePrice());
+        System.out.println("Toplam Villa Fiyatı: " + propertyService.getTotalVillaPrice());
+        System.out.println("Toplam Yazlık Fiyatı: " + propertyService.getTotalCottagePrice());
+        System.out.println("Toplam Mülk Fiyatı: " + propertyService.getTotalPropertyPrice());
 
-        System.out.println("Ortalama Ev Metrekaresi: " + propService.getAverageHouseSize());
-        System.out.println("Ortalama Villa Metrekaresi: " + propService.getAverageVillaSize());
-        System.out.println("Ortalama Yazlık Metrekaresi: " + propService.getAverageCottageSize());
-        System.out.println("Ortalama Mülk Metrekaresi: " + propService.getAveragePropertySize());
+        System.out.println("Ortalama Ev Metrekaresi: " + propertyService.getAverageHouseSize());
+        System.out.println("Ortalama Villa Metrekaresi: " + propertyService.getAverageVillaSize());
+        System.out.println("Ortalama Yazlık Metrekaresi: " + propertyService.getAverageCottageSize());
+        System.out.println("Ortalama Mülk Metrekaresi: " + propertyService.getAveragePropertySize());
 
         int roomCountFilter = 3;
         int saloonCountFilter = 2;
 
-        List<Object> filteredProperties = propService.filterByRoomAndSaloon(roomCountFilter, saloonCountFilter);
+        List<Object> filteredProperties = propertyService.filterByRoomAndSaloon(roomCountFilter, saloonCountFilter);
         System.out.println(roomCountFilter + " odalı ve " + saloonCountFilter + " salonlu mülkler: " + filteredProperties);
     }
 }

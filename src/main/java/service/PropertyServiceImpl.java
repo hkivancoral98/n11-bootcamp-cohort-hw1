@@ -1,5 +1,6 @@
 package service;
 
+import dataAccess.PropertyRepository;
 import entity.*;
 
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ public class PropertyServiceImpl implements PropertyService {
     private final List<Cottage> cottages;
     private final List<Villa> villas;
 
-    public PropertyServiceImpl(List<House> houses, List<Cottage> cottages, List<Villa> villas) {
-        this.houses = houses;
-        this.cottages = cottages;
-        this.villas = villas;
+    public PropertyServiceImpl(PropertyRepository propertyRepository) {
+        this.houses = propertyRepository.getHouseList();
+        this.cottages = propertyRepository.getCottageList();
+        this.villas = propertyRepository.getVillaList();
     }
 
     @Override
