@@ -15,15 +15,22 @@ public class App {
         System.out.println("Toplam Yazlık Fiyatı: " + propertyService.getTotalCottagePrice());
         System.out.println("Toplam Mülk Fiyatı: " + propertyService.getTotalPropertyPrice());
 
-        System.out.println("Ortalama Ev Metrekaresi: " + propertyService.getAverageHouseSize());
+        System.out.println("\nOrtalama Ev Metrekaresi: " + propertyService.getAverageHouseSize());
         System.out.println("Ortalama Villa Metrekaresi: " + propertyService.getAverageVillaSize());
         System.out.println("Ortalama Yazlık Metrekaresi: " + propertyService.getAverageCottageSize());
         System.out.println("Ortalama Mülk Metrekaresi: " + propertyService.getAveragePropertySize());
 
-        int roomCountFilter = 3;
+        int roomCountFilter = 4;
         int saloonCountFilter = 2;
 
         List<Object> filteredProperties = propertyService.filterByRoomAndSaloon(roomCountFilter, saloonCountFilter);
-        System.out.println(roomCountFilter + " odalı ve " + saloonCountFilter + " salonlu mülkler: " + filteredProperties);
+
+        if(filteredProperties.isEmpty()){
+            System.out.println("\nAradığınız kriterlere uygun bir mülk bulunamadı.");
+        }
+        else{
+            System.out.println("\n" + roomCountFilter + " odalı ve " + saloonCountFilter + " salonlu mülkler: " + filteredProperties);
+        }
+
     }
 }
